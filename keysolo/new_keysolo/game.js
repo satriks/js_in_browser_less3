@@ -17,22 +17,18 @@
 
     function checkLetter(event) {
         console.log(event.key);
-        console.log(currentWord[counter]);
-        if (event.key == currentWord[counter]){
-            console.log('а что тут');
-            success()
-            
-        } else fail()
-
-        
+        if (event.key == 'Control' || event.key == 'Alt' || event.key == 'Shift'){ 
+            console.log('равны');
+        } else {
+            event.key == currentWord[counter]? success() : fail()
+        }
     }
 
     function  timer () {
-        console.log(timeForWord);
+        // console.log(timeForWord);
         let sec = timeForWord
         timeForWord--
         if (sec <= 0 ) {
-        //   alert('время кончилось');
         clearInterval(meInterval);
         fail()
         } else {
@@ -114,7 +110,11 @@
 
             let li = document.createElement('li')
             li.id = i
-            li.innerHTML = `<p>${word[i]}</p>`
+            console.log(!!word[i]);
+            if (word[i] == ' ') {
+                console.log('точка');
+                li.innerHTML = `<p> \xa0 </p>`
+            } else li.innerHTML = `<p>${word[i]}</p>`;
             wordPleace.prepend(li)
             currentWord.push(word[i])
             
@@ -130,10 +130,10 @@
     function getWord() {
         const words = [
             'bob love Кетти',
-            'awesome',
-            'netology',
-            'hello',
-            'kitty',
+            'awesome и это ты',
+            'netology учиться',
+            'hello ворлд',
+            'kitty кат',
             'rock',
             'youtube',
             'popcorn',
